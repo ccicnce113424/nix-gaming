@@ -105,6 +105,8 @@
 
       proton-osu-bin = pkgs.callPackage ./proton-osu-bin {inherit pins;};
 
+      proton-xiv-bin = pkgs.callPackage ./proton-xiv-bin {};
+
       roblox-player = pkgs.callPackage ./roblox-player {
         wine = config.packages.wine-tkg;
         inherit (config.packages) wine-discord-ipc-bridge;

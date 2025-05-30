@@ -28,6 +28,7 @@ jobs:
           pkgs/osu-lazer-bin/update.sh
           pkgs/osu-stable/update.sh
           pkgs/proton-osu-bin/update.sh
+          pkgs/proton-xiv-bin/update.sh
           pkgs/wine/update-wine-ge.sh
 
       - uses: stefanzweifel/git-auto-commit-action@v4
