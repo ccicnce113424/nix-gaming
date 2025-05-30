@@ -103,6 +103,8 @@
         '';
       };
 
+      proton-cachyos-bin = pkgs.callPackage ./proton-cachyos-bin {};
+
       proton-osu-bin = pkgs.callPackage ./proton-osu-bin {inherit pins;};
 
       roblox-player = pkgs.callPackage ./roblox-player {
