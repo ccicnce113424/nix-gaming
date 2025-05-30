@@ -19,14 +19,24 @@ in
       "steamcompattool"
     ];
 
-    buildCommand = ''
-      runHook preBuild
+    installPhase = ''
+      runHook preInstall
 
+      # Make it impossible to add to an environment. You should use the appropriate NixOS option.
+      # Also leave some breadcrumbs in the file.
       echo "${finalAttrs.pname} should not be installed into environments. Please use programs.steam.extraCompatPackages instead." > $out
 
-      ln -s $src $steamcompattool
+      mkdir $steamcompattool
+      ln -s $src/* $steamcompattool
+      rm $steamcompattool/compatibilitytool.vdf
+      cp $src/compatibilitytool.vdf $steamcompattool
 
-      runHook postBuild
+      runHook postInstall
+    '';
+
+    preFixup = ''
+      substituteInPlace "$steamcompattool/compatibilitytool.vdf" \
+        --replace-fail "proton-${finalAttrs.version}-x86_64_v3" "Proton-CachyOS"
     '';
 
     meta = {
