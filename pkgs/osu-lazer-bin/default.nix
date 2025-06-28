@@ -13,6 +13,7 @@
     then "${gamemode}/bin/gamemoderun"
     else null,
   releaseStream ? "lazer",
+  extraPkgs ? pkgs: [],
   osu-mime,
 }: let
   pname = "osu-lazer-bin";
@@ -27,7 +28,7 @@
   derivation = appimageTools.wrapType2 {
     inherit version pname src;
 
-    extraPkgs = pkgs: [pkgs.icu];
+    extraPkgs = pkgs: [pkgs.icu] ++ (extraPkgs pkgs);
 
     extraInstallCommands = let
       contents = appimageTools.extract {inherit pname version src;};
